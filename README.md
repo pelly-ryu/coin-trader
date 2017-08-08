@@ -6,7 +6,8 @@ Chrome extension which is support trading cryptocurrencies
 - ... will be added
 
 ## WARNING!
-Credential information is stored in Chrome storage(which is **NOT** safe)
+Credential information is stored in Chrome storage(which is **NOT** safe).
+
 *Don't use this extension in a public device.*
 
 Authentication will be supported later.
