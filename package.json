@@ -1,6 +1,6 @@
 {
   "name": "coin-trader",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Chrome extention for coin trading",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "rimraf": "^2.5.0",
-    "webpack": "^2.6.0"
+    "webpack": "^2.6.0",
+    "axios": "^0.16.2"
   }
 }
