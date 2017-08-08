@@ -5,16 +5,45 @@ import crypto from 'crypto-browserify'
 class CredentialForm extends Component {
   constructor (props) {
     super(props)
+
+    const credentials = this.getCredentialsFromChromeStorage()
+
     this.state = {
       form: {
-        accessToken: '',
-        secretKey: '',
+        accessToken: credentials.accessToken,
+        secretKey: credentials.secretKey,
       },
       result: '',
     }
   }
 
+  getCredentialsFromChromeStorage () {
+    const credentials = {
+      accessToken: '',
+      secretKey: ''
+    }
+
+    if (!chrome || !chrome.storage) {
+      return credentials
+    }
+
+    chrome.storage.local.get('credential', (data) => {
+      if (data['credential']) {
+        this.setState({form: data['credential']})
+      }
+    })
+
+    return credentials
+  }
+
   getBalance () {
+    chrome.storage.local.set({
+      credential: {
+        accessToken: this.state.form.accessToken,
+        secretKey: this.state.form.secretKey
+      }
+    })
+
     const url = 'https://api.coinone.co.kr/v2/account/balance/'
     let payload = {
       'access_token': this.state.form.accessToken,
@@ -61,8 +90,16 @@ class CredentialForm extends Component {
   render () {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
-        Access Token <input type="text" name="accessToken" onChange={this.onChange.bind(this)}/><br/>
-        Secret Key <input type="text" name="secretKey" onChange={this.onChange.bind(this)}/><br/>
+        Access Token <input type="text"
+                            name="accessToken"
+                            value={this.state.form['accessToken']}
+                            onChange={this.onChange.bind(this)}/>
+        <br/>
+        Secret Key <input type="text"
+                          name="secretKey"
+                          value={this.state.form['secretKey']}
+                          onChange={this.onChange.bind(this)}/>
+        <br/>
         <input type="submit" value="load"/>
         <div>{this.state.result}</div>
       </form>

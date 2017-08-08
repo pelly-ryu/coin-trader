@@ -19,6 +19,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
+    "storage",
     "http://*.coinone.co.kr/",
     "https://*.coinone.co.kr/"
   ]
