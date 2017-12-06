@@ -18,6 +18,7 @@
     "default_title": "Coin Trader",
     "default_popup": "popup.html"
   },
+  "options_page": "options.html",
   "permissions": [
     "storage",
     "http://*.coinone.co.kr/",
