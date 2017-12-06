@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Coin Trader",
   "description": "Extension which is support trading cryptocurrencies",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "icons": {
     "16": "images/icon16.png",
     "24": "images/icon24.png",
