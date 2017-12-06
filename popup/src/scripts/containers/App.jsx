@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import crypto from 'crypto-browserify'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import BodyContainer from './BodyContainer'
+import NavigationBar from './NavigationBar'
+
+injectTapEventPlugin() // It's too annoying
+
+// It's better that one Component work with chrome storage
 
 class CredentialForm extends Component {
   constructor (props) {
@@ -110,12 +118,41 @@ class CredentialForm extends Component {
 class App extends Component {
   constructor (props) {
     super(props)
+
+    const signedUp = false
+    const signedIn = false
+
+    this.state = {
+      signedUp: signedUp,
+      signedIn: signedIn
+    }
+
+    this.handleSignStatusChange = this.handleSignStatusChange.bind(this)
+  }
+
+  handleSignStatusChange(key, value) {
+    this.setState({
+      [key]: value
+    })
   }
 
   render () {
+    const style = {
+      height: '100%'
+    } //todo i'm not sure this is needed.
+
     return (
-      <div>
-        <CredentialForm/>
+      <div style={style}>
+        <MuiThemeProvider>
+          <div>
+            <NavigationBar/>
+            <BodyContainer
+              signedUp={this.state.signedUp}
+              signedIn={this.state.signedIn}
+              onSignStatusChange={this.handleSignStatusChange}
+            />
+          </div>
+        </MuiThemeProvider>
       </div>
     )
   }

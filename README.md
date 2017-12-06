@@ -6,11 +6,16 @@ Chrome extension which is support trading cryptocurrencies
 - ... will be added
 
 ## WARNING!
-Credential information is stored in Chrome storage(which is **NOT** safe).
+Credential information is encrypted and saved in Chrome storage.
+Password for the information is not stored in anywhere, so you must remember it.
 
-*Don't use this extension in a public device.*
+But it's *NOT* completely safe.
+Someone who gained access to the device could get the encrypted credentials,
+and there are several ways to find out original information. (e.g. Brute Force attack to the password)
+The source code of this extension including encrypting part is open-sourced,
+and not using private storage(Chrome storage isn't safe) to save credential information.
 
-Authentication will be supported later.
+**Please be aware to use this extension in a public place.**
 
 ## How To Install
 1. `git clone https://github.com/pelly-ryu/coin-trader.git`
