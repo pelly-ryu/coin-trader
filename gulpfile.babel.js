@@ -33,11 +33,23 @@ gulp.task('copy-images', ['clean'], () => {
     .pipe(gulp.dest('./build/images'))
 })
 
+gulp.task('copy-options-html', ['clean'], () => {
+  return gulp.src('options/index.html')
+    .pipe(plugins.rename('options.html'))
+    .pipe(gulp.dest('./build'))
+})
+
+gulp.task('copy-options-js', ['clean'], () => {
+  return gulp.src('options/script.js')
+    .pipe(plugins.rename('options.js'))
+    .pipe(gulp.dest('./build'))
+})
+
 gulp.task('clean', (cb) => {
   rimraf('./build', cb)
 })
 
-gulp.task('build', ['copy-manifest', 'copy-images', 'popup-js', 'popup-html'])
+gulp.task('build', ['copy-manifest', 'copy-images', 'copy-options-html', 'copy-options-js', 'popup-js', 'popup-html'])
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('popup/**/*', ['build'])
